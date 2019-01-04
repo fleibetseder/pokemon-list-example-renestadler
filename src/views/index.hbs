@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
+    <title>Pokemon</title>
+</head>
+<body>
+    <h1>{{ message }}</h1>
+    <br>
+    {{#if pokemon}}
+    <table class="table-bordered table-hover table-responsive" id="pokeTable">
+        <thead class="table-primary">
+            <tr>
+                <th>Pokemon Name</th>
+                <th>Further Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each pokemon}}
+            <tr class="table-secondary">
+                <td>{{name}}</td>
+                <td>
+                    <form action="./details" method="post">
+                        <input type="hidden" name="url" value="{{url}}">
+                        <input type="submit" value="Details" class="bg-secondary">
+                    </form>
+                </td>
+                {{/each}}
+            </tr>
+        </tbody>
+    </table>
+    {{else}}
+    <form action="./" method="get">
+        <input type="submit" value="return to the list" class="bg-secondary">
+    </form><br>
+    <h2 class="text-primary">{{name}}</h2>
+    <p class="text-primary"><img src="{{image}}"></p>
+    <p class="text-primary">Types: </p>
+    <ul class="list-group-item-action">
+        {{#each types}}
+        <li>{{type.name}}</li>
+        {{/each}}
+    </ul>
+    <p class="text-primary">{{weight}}</p>
+    <p class="text-primary">{{height}}</p>
+    <p class="text-primary">Abilities: </p>
+    <ul class="list-group-item-action">
+        {{#each functions}}
+        <li>{{ability.name}}</li>
+        {{/each}}
+    </ul>
+    {{/if}}
+</body>
+</html>
